@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: remediation-agent
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: remediation-agent
+  template:
+    metadata:
+      labels:
+        app: remediation-agent
+    spec:
+      serviceAccountName: remediation-agent
+      containers:
+      - name: remediation-agent
+        image: remediation-agent:v1
+        imagePullPolicy: Never
